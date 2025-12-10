@@ -11,6 +11,7 @@ import '@/assets/tailwind.css';
 import '@/assets/styles.scss';
 
 const app = createApp(App);
+export const baseUrl = import.meta.env.BASE_URL;
 
 app.use(router);
 app.use(PrimeVue, {

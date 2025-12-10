@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import PageLayout from "@/layout/PageLayout.vue";
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/ysp-germany-website/'),
     routes: [
         {
             path: '/',
