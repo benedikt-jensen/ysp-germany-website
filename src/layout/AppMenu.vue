@@ -27,8 +27,8 @@ const model = ref([
     {
         label: 'Home',
         items: [
-            { label: 'Add Report', icon: 'pi pi-fw pi-pencil', to: '/' },
-            { label: 'Public Site', icon: 'pi pi-fw pi-home', to: '/about' },
+            { label: 'Add Report', icon: 'pi pi-fw pi-pencil', to: '/admin' },
+            { label: 'Public Site', icon: 'pi pi-fw pi-home', to: '/' },
         ],
     },
     {

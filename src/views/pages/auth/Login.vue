@@ -17,7 +17,7 @@ onMounted(() => {
             // User is signed in
             user.value = firebaseUser;
             console.log('User is logged in:', firebaseUser.email);
-            router.push('/');
+            router.push('/admin');
         } else {
             // User is signed out
             user.value = null;
@@ -32,7 +32,7 @@ function signIn() {
             // Signed in
             const user = userCredential.user;
             console.log('Signed in:', user);
-            router.push('/');
+            router.push('/admin');
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -44,7 +44,7 @@ function signIn() {
 
 function logOut() {
     auth.signOut().then(() => {
-        router.push('/about');
+        router.push('/');
     });
 }
 </script>
@@ -63,7 +63,8 @@ function logOut() {
 
                     <div v-if="user">
                         <div class="text-xl font-semibold">You are currently signed on.</div>
-                        <Button @click="logOut" fluid="false">Sign Out</Button>
+                        <Button label="Sign Out" class="w-full mb-4" @click="logOut"></Button>
+                        <Button @click="router.push('/')" label="To Public Site" class="w-full p-button-outlined"></Button>
                     </div>
 
                     <div v-if="!user">
@@ -74,7 +75,7 @@ function logOut() {
                         <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="mb-4" fluid :feedback="false"></Password>
 
                         <Button label="Sign In" class="w-full mb-4" @click="signIn"></Button>
-                        <Button @click="router.push('/about')" label="To Public Site" class="w-full p-button-outlined"></Button>
+                        <Button @click="router.push('/')" label="To Public Site" class="w-full p-button-outlined"></Button>
                     </div>
                 </div>
             </div>

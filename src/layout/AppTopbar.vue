@@ -11,7 +11,7 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
 
 function signOut() {
     auth.signOut().then(() => {
-    router.push('/about');
+    router.push('/');
 
     });
 }

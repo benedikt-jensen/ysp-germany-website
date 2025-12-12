@@ -68,7 +68,7 @@ router.afterEach(() => {
     <div class="items-center bg-surface-0 dark:bg-surface-900 grow justify-between hidden text-nowrap md:flex absolute md:static w-full left-0 top-full px-12 lg:px-0 z-20 rounded-border">
         <ul class="list-none p-0 m-0 flex lg:items-center select-none flex-col md:flex-row cursor-pointer my-5 md:my-0 gap-0 gap-y-8">
             <li>
-                <router-link to="/about" :class="linkClass('/about')">
+                <router-link to="/" :class="linkClass('/')">
                     <span>Über uns</span>
                 </router-link>
             </li>
@@ -83,7 +83,7 @@ router.afterEach(() => {
                 </router-link>
             </li>
             <li v-if="true || user" class="lg:block">
-                <router-link to="/" :class="linkClass('/')">
+                <router-link to="/admin" :class="linkClass('/admin')">
                     <span>Admin</span>
                 </router-link>
             </li>
