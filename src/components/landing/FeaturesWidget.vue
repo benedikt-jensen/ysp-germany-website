@@ -106,7 +106,7 @@ const carouselResponsiveOptions = ref([
                 <div class="text-center mb-10">
                     <Button class="w-100" label="Visit IAYSP Website" icon="pi pi-globe" href="https://iaysp.org/" target="_blank" />
                 </div>
-                <img src="/ysp/images/about/han_hak_ja.png" alt="Han Hak Ja" class="col-span-12 md:col-span-4 rounded float-left ms-0 mt-0 m-5">
+                <img src="/ysp/images/about/han_hak_ja.png" alt="Han Hak Ja" class="col-span-4 rounded float-left w-full md:w-auto md:me-5 md:mb-5">
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
                     Diese wurde 2017 von Dr. Hak Ja Han Moon in Südkorea gegründet. Zusammen mit ihrem Ehemann Sun Myung Moon (1920 – 2012) hat sie ihr ganzes Leben dem Frieden gewidmet und zahlreiche Projekte gestartet, um Menschen aus den verschiedensten Bereichen – der Politik, der Religion, der Medien, der Kunst, des Sportes etc. – zusammenzubringen, um gemeinsam für den Frieden zu wirken.                </p>
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
