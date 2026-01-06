@@ -103,12 +103,19 @@ const carouselResponsiveOptions = ref([
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
                     YSP Deutschland ist ein Zweig der weltweiten Organisation IAYSP – International Association of Youth and Students for Peace.
                 </p>
-                <div class="text-center mb-10">
+                <div class="text-center">
                     <Button class="w-100" label="Visit IAYSP Website" icon="pi pi-globe" href="https://iaysp.org/" target="_blank" />
                 </div>
-                <img src="/ysp/images/about/han_hak_ja.png" alt="Han Hak Ja" class="col-span-4 rounded float-left w-full md:w-auto md:me-5 md:mb-5">
+            </div>
+
+            <div class="col-span-12 text-center mt-6 mb-3">
+                <div class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-4xl">Gründerin</div>
+            </div>
+
+            <div class="col-span-12 ">
+                <img src="/ysp/images/about/han_hak_ja.png" alt="Han Hak Ja" class="col-span-4 rounded float-left w-full md:w-auto md:me-5 mb-5">
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
-                    Diese wurde 2017 von Dr. Hak Ja Han Moon in Südkorea gegründet. Zusammen mit ihrem Ehemann Sun Myung Moon (1920 – 2012) hat sie ihr ganzes Leben dem Frieden gewidmet und zahlreiche Projekte gestartet, um Menschen aus den verschiedensten Bereichen – der Politik, der Religion, der Medien, der Kunst, des Sportes etc. – zusammenzubringen, um gemeinsam für den Frieden zu wirken.                </p>
+                    IAYSP wurde 2017 von Dr. Hak Ja Han Moon in Südkorea gegründet. Zusammen mit ihrem Ehemann Sun Myung Moon (1920 – 2012) hat sie ihr ganzes Leben dem Frieden gewidmet und zahlreiche Projekte gestartet, um Menschen aus den verschiedensten Bereichen – der Politik, der Religion, der Medien, der Kunst, des Sportes etc. – zusammenzubringen, um gemeinsam für den Frieden zu wirken.                </p>
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
                     Mit der Gründung von IAYSP verfolgt sie die Vision, junge Menschen aus der ganzen Welt zu bekräftigen, um gemeinsam für den Frieden zu arbeiten und Hoffnung für die Welt zu sein.                </p>
                 <p class="text-surface-900 dark:text-surface-0 font-normal mb-2 text-2xl">
