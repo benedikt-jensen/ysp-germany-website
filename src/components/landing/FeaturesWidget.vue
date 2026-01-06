@@ -122,7 +122,9 @@ const carouselResponsiveOptions = ref([
                     <div class="border bg-surface-0 dark:bg-surface-900 h-ful rounded m-2 p-4">
                         <div class="mb-4">
                             <div class="relative mx-autol">
-                                <img :src="activity.data.url" alt="activity" class="w-full rounded" />
+                                <Image :src="activity.data.url" alt="activity" class="w-full rounded" preview/>
+<!--                                <Image :src="slotProps.data.itemImageSrc" :alt="slotProps.data.name" :imageStyle="{ objectFit: 'cover' }" imageClass="aspect-4/4 rounded" preview/>-->
+
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
@@ -136,5 +138,3 @@ const carouselResponsiveOptions = ref([
         </div>
     </div>
 </template>
-<script setup lang="ts">
-</script>
