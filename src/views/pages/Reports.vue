@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import '@/models/post';
 import {Post, postConverter} from "@/models/post";
-import { firestore } from '@/firebase';
 import { collection, doc, setDoc, getDocs } from "firebase/firestore";
-import {RouterLink, useRouter} from "vue-router";
+import { firestore, onAuthStateChangedHook } from '@/firebase';
+const user = ref(null)
+
+onMounted(onAuthStateChangedHook(user));
 
 const galleriaResponsiveOptions = ref([
     {
@@ -70,7 +72,7 @@ fetchReportsFromFirestore();
             <div class="flex flex-col flex-grow md:w-1/2 lg:w-1/2">
                 <div class="flex flex-row justify-between w-full mb-5">
                     <div class="font-bold text-xl md:text-2xl lg:text-3xl">{{entry.post.title}}</div>
-                    <Button @click="$router.push('/edit_report/'+entry.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
+                    <Button v-if="user" @click="$router.push('/edit_report/'+entry.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
                 </div>
                 <p class="text-lg md:text-xl lg:text-2xl" v-for="paragraph in (entry.post.body?.split('\n\n') ?? [])">{{paragraph}}</p>
                 <div class="mt-5 flex flex-row-reverse font-semibold text-md md:text-lg text-surface-400">

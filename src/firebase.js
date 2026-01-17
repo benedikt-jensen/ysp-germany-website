@@ -1,9 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from 'firebase/auth';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import router from "@/router";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,3 +26,24 @@ const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
 export const storage = getStorage(app);
+
+export const signOut = function() {
+    auth.signOut().then(() => {
+        router.push('/');
+
+    });
+}
+
+export const onAuthStateChangedHook = function(userRef) {
+    return () => {
+        onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                userRef.value = firebaseUser;
+                console.log('User is logged in:', firebaseUser.email);
+            } else {
+                userRef.value = null;
+                console.log('No user is logged in');
+            }
+        });
+    };
+};

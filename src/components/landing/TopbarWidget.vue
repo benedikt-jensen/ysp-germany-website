@@ -1,4 +1,6 @@
 <script setup>
+import {useLayout} from "@/layout/composables/layout";
+
 function smoothScroll(id) {
     document.body.click();
     const element = document.getElementById(id);

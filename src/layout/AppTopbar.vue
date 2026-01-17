@@ -2,19 +2,12 @@
 import { useLayout } from '@/layout/composables/layout';
 import AppConfigurator from './AppConfigurator.vue';
 import YspLogo from "@/components/ysp/YspLogo.vue";
-import {auth} from "@/firebase";
+import {auth, signOut } from "@/firebase";
 import router from "@/router";
 import {onMounted, ref} from "vue";
 import {onBeforeRouteLeave} from "vue-router";
 
 const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
-
-function signOut() {
-    auth.signOut().then(() => {
-    router.push('/');
-
-    });
-}
 
 const heading = ref('');
 

@@ -37,6 +37,10 @@ const carouselResponsiveOptions = ref([
         numScroll: 1
     }
 ]);
+
+const openIAYSPWebsite = () => {
+    window.open('https://iaysp.org/', '_blank');
+};
 </script>
 
 <template>
@@ -104,7 +108,7 @@ const carouselResponsiveOptions = ref([
                     YSP Deutschland ist ein Zweig der weltweiten Organisation IAYSP – International Association of Youth and Students for Peace.
                 </p>
                 <div class="text-center">
-                    <Button class="w-100" label="Visit IAYSP Website" icon="pi pi-globe" href="https://iaysp.org/" target="_blank" />
+                    <Button class="w-100" label="IAYSP Website Besuchen" icon="pi pi-globe" @click="openIAYSPWebsite" />
                 </div>
             </div>
 

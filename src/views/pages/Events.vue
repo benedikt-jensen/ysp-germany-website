@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import FeaturesWidget from '@/components/landing/FeaturesWidget.vue';
-import FooterWidget from '@/components/landing/FooterWidget.vue';
-import HeroWidget from '@/components/ysp/HeroWidget.vue';
-import HighlightsWidget from '@/components/landing/HighlightsWidget.vue';
-import PricingWidget from '@/components/landing/PricingWidget.vue';
-import TopbarWidget from '@/components/ysp/TopbarWidget.vue';
+import { firestore, onAuthStateChangedHook } from '@/firebase';
+import {onMounted, ref} from "vue";
+const user = ref(null)
+
+onMounted(onAuthStateChangedHook(user));
 
 const events = [
     {
@@ -38,7 +37,7 @@ const events = [
             <div class="flex flex-col flex-grow md:w-1/2 lg:w-1/2">
                 <div class="flex flex-row justify-between w-full mb-5">
                     <div class="font-bold text-xl md:text-2xl lg:text-3xl">{{ event.title }}</div>
-                    <Button @click="$router.push('/edit_report/'+event.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
+                    <Button v-if="user" click="$router.push('/edit_report/'+event.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
                 </div>
                 <p class="text-lg md:text-xl lg:text-2xl" v-for="p in (event.body?.split('\n\n') ?? [])">{{ p }}</p>
                 <div class="mt-5 flex flex-row-reverse font-semibold text-md md:text-lg text-surface-400">
