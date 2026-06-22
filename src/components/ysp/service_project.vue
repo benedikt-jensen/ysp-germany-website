@@ -10,7 +10,7 @@ defineProps({
 <template>
     <svg
         width="141.35292mm"
-        height="96.346619mm"
+        height="60mm"
         viewBox="0 0 141.35292 96.346619"
         version="1.1"
         id="svg1"

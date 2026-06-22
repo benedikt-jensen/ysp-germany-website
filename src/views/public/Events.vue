@@ -93,14 +93,14 @@ fetchEventsFromFirestore();
     <div v-if="providedPostMap.length == 0" class="card m-0 lg:m-5">
         <div class="flex lg:flex-row flex-wrap m-0">
             <div class="md:w-1/2 lg:w-1/2 pe-0 md:pe-5 mx-auto">
-                <ServiceProject class="w-max mx-auto h-70" style="max-width:100%;"></ServiceProject>
+                <ServiceProject class="w-max mx-auto md:h-100" style="max-width:100%;"></ServiceProject>
             </div>
 
             <div class="flex flex-col flex-grow md:w-1/2 lg:w-1/2 text-center md:text-left items-center md:items-start">
                 <h2>Keine bevorstehenden Events</h2>
                 <hr style="width: 100%"/>
-                <div class="text-xl mb-5">In unmittelbarer Zukunft sind keine Events geplant. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns, wenn Sie ein Event vorschlagen möchten!</div>
-                <Button as="a" href="mailto:ysp@gmail.com" icon="pi pi-mail" label="Email an ysp.gmail.com senden" style="max-width:20em;"></Button>
+                <div class="text-2xl mb-5">In unmittelbarer Zukunft sind keine Events geplant. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns, wenn Sie ein Event vorschlagen möchten!</div>
+                <Button as="a" href="mailto:ysp@gmail.com" icon="pi pi-mail" label="Email an ysp@gmail.com senden" style="max-width:20em;"></Button>
             </div>
         </div>
     </div>
