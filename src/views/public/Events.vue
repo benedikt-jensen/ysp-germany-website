@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { firestore, onAuthStateChangedHook } from '@/firebase';
-import {onMounted, ref} from "vue";
-import {collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import {Post, postConverter} from "@/models/post";
+import { onMounted, ref } from 'vue';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { Post, postConverter } from '@/models/post';
+import ServiceProject from '@/components/ysp/service_project.vue';
 import { useConfirm } from 'primevue/useconfirm';
 import { useToast } from 'primevue/usetoast';
 
-const user = ref(null)
+const user = ref(null);
 const displayConfirmation = ref(false);
 const toast = useToast();
 const confirmPopup = useConfirm();
@@ -23,15 +24,15 @@ function getDeleteEventName() {
     if (!deleteEventId.value) {
         return '';
     }
-    const event = providedPostMap.value.find(entry => entry.id === deleteEventId.value);
+    const event = providedPostMap.value.find((entry) => entry.id === deleteEventId.value);
     return event ? event.post.title : '';
 }
 
 function deleteEvent(eventId) {
-    const docRef = doc(firestore, "events", eventId);
-    deleteDoc(docRef)
+    const docRef = doc(firestore, 'events', eventId);
+    deleteDoc(docRef);
     closeConfirmation();
-    providedPostMap.value = providedPostMap.value.filter(entry => entry.id !== eventId);
+    providedPostMap.value = providedPostMap.value.filter((entry) => entry.id !== eventId);
 }
 
 function openConfirmation() {
@@ -66,45 +67,59 @@ function confirm(event) {
 
 function fetchEventsFromFirestore() {
     getDocs(collection(firestore, 'events').withConverter(postConverter))
-        .then(querySnapshot => {
-            const fetchedPosts: {id: string, post: Post}[] = [];
-            querySnapshot.forEach(doc => {
-                fetchedPosts.push({id: doc.id, post: doc.data()});
+        .then((querySnapshot) => {
+            const fetchedPosts: { id: string; post: Post }[] = [];
+            querySnapshot.forEach((doc) => {
+                let post = doc.data();
+                const DAY = 1000 * 60 * 60 * 24;
+                let yesterday = new Date(Date.now() - DAY);
+                if (post.date > yesterday) {
+                    fetchedPosts.push({ id: doc.id, post: post });
+                }
             });
             fetchedPosts.sort((a, b) => a.post.date.getTime() - b.post.date.getTime());
             providedPostMap.value = fetchedPosts;
         })
-        .catch(error => {
-            console.error("Error fetching events: ", error);
+        .catch((error) => {
+            console.error('Error fetching events: ', error);
         });
 }
 
-let providedPostMap = ref<{id: string, post: Post}[]>([]);
+let providedPostMap = ref<{ id: string; post: Post }[]>([]);
 fetchEventsFromFirestore();
-
 </script>
 
 <template>
+    <div v-if="providedPostMap.length == 0" class="card m-0 lg:m-5">
+        <div class="flex lg:flex-row flex-wrap m-0">
+            <div class="md:w-1/2 lg:w-1/2 pe-0 md:pe-5 mx-auto">
+                <ServiceProject class="w-max mx-auto h-70" style="max-width:100%;"></ServiceProject>
+            </div>
+
+            <div class="flex flex-col flex-grow md:w-1/2 lg:w-1/2 text-center md:text-left items-center md:items-start">
+                <h2>Keine bevorstehenden Events</h2>
+                <hr style="width: 100%"/>
+                <div class="text-xl mb-5">In unmittelbarer Zukunft sind keine Events geplant. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns, wenn Sie ein Event vorschlagen möchten!</div>
+                <Button as="a" href="mailto:ysp@gmail.com" icon="pi pi-mail" label="Email an ysp.gmail.com senden" style="max-width:20em;"></Button>
+            </div>
+        </div>
+    </div>
     <div v-for="entry in providedPostMap" class="card m-0 lg:m-5">
         <div class="flex lg:flex-row flex-wrap m-0">
             <div class="md:w-1/2 lg:w-1/2 pe-5">
-                <Image v-if="entry.post.photoUrls.length > 0"  :src="entry.post.photoUrls[0]" alt="event_image" :imageStyle="{ objectFit: 'cover' }" imageClass="aspect-4/4 rounded" preview/>
+                <Image v-if="entry.post.photoUrls.length > 0" :src="entry.post.photoUrls[0]" alt="event_image" :imageStyle="{ objectFit: 'cover' }" imageClass="aspect-4/4 rounded" preview />
             </div>
 
             <div class="flex flex-col flex-grow md:w-1/2 lg:w-1/2">
                 <div class="flex flex-row justify-between w-full mb-5 gap-1">
                     <div class="font-bold mt-5 md:mt-0 text-center md:text-left text-2xl md:text-4xl lg:text-5xl flex-1">{{ entry.post.title }}</div>
                     <Button v-if="user" @click="deleteEventPrompt(entry.id)" icon="pi pi-trash" severity="danger"></Button>
-                    <Button v-if="user" @click="$router.push('/edit_event/'+entry.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
+                    <Button v-if="user" @click="$router.push('/edit_event/' + entry.id)" icon="pi pi-pencil" label="Bearbeiten"></Button>
                 </div>
-                <p class="text-lg md:text-xl lg:text-2xl"
-                   v-for="p in (entry.post.body?.split('\n\n') ?? [])"
-                   v-html="p">
-                </p>
+                <p class="text-lg md:text-xl lg:text-2xl" v-for="p in entry.post.body?.split('\n\n') ?? []" v-html="p"></p>
                 <div class="mt-5 flex flex-row-reverse font-semibold text-md md:text-lg text-surface-400">
                     <span v-if="entry.post.date != null">{{ entry.post.date.toLocaleDateString() }}</span>
-                    <span
-                        v-if="entry.post.location != null && entry.post.location.trim().length > 0">{{ entry.post.location + ',&nbsp' }}</span>
+                    <span v-if="entry.post.location != null && entry.post.location.trim().length > 0">{{ entry.post.location + ',&nbsp' }}</span>
                 </div>
             </div>
         </div>
