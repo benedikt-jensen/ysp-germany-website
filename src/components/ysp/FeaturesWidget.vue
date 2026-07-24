@@ -39,7 +39,7 @@ const carouselResponsiveOptions = ref([
 ]);
 
 const openIAYSPWebsite = () => {
-    window.open('https://iaysp.org/', '_blank');
+    window.open('https://yspeace.org/', '_blank');
 };
 </script>
 
